@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Location Voitures </div>
+      <div class="list-group list-group-flush">
+        <a href="{{ path('admin') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="{{ path('admin_agence') }}" class="list-group-item list-group-item-action bg-light">Agences</a>
+        <a href="{{ path('admin_agent') }}" class="list-group-item list-group-item-action bg-light">Agents</a>
+        <a href="{{ path('admin_voiture') }}" class="list-group-item list-group-item-action bg-light">Voitures</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <span class="navbar-text"> Bonjour {{app.user.email}} !</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        {% block inner_content %}
+            <h1 class="mt-4">Dashboard</h1>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Voitures disponibles
+                <span class="badge badge-primary badge-pill">{{ voituresDisp }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Voitures à rendre dans le stock
+                <span class="badge badge-primary badge-pill">{{ voituresNonRendues }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Factures impayées
+                <span class="badge badge-primary badge-pill">{{ facturesImp }}</span>
+              </li>
+            </ul>
+        {% endblock %}
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+{% endblock %}
